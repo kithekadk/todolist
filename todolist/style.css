@@ -78,6 +78,28 @@ input[type="checkbox"]{
     margin-left: 15px;
 }
 
+.filter{
+    display:flex;
+    align-items: center;
+    gap:5px 20px
+
+}
+
+a{
+    text-decoration: none;
+    color:rgb(209, 208, 208);
+}
+
+.footer{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(10, 2, 37);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+}
+
 @media screen and (max-width: 378px) {
     .todomain{
         width: 90vw;

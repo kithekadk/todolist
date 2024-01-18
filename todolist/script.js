@@ -1,3 +1,5 @@
+// import { pickName } from "../test.js"
+
 let todosContainer = document.querySelector('.todos')
 
 let todos = []
@@ -11,6 +13,7 @@ todoform.addEventListener("submit", (e)=>{
 
     if(newtodo.value.trim() !== ""){
         let todo = {
+            id: todos.length + 1,
             taskname: newtodo.value.trim(),
             status: checkedstatus.checked
         }
@@ -21,21 +24,43 @@ todoform.addEventListener("submit", (e)=>{
 
         localStorage.setItem('todos', JSON.stringify(todos))
 
-        displayTodos()
+        displayTodos("")
     }
 })
 
-let displayTodos = function(){
 
+let displayTodos = function(state){
+    
     let taskItems = localStorage.getItem("todos")
 
     taskItems = JSON.parse(taskItems)
+
+    // console.log(taskItems);
+    // count
+    let res = taskItems.filter(el=>{
+        return el.status === false
+    })
+    let count = document.querySelector('.count')
+    count.textContent = `${res.length} items left`
+
+    console.log(res);
 
     let tasks = document.querySelectorAll('.todos .todo')
 
     tasks.forEach(el=>{
         el.remove()
     })
+
+
+    taskItems = taskItems.filter(el =>{
+        if(state !== ""){
+            return el.status == state
+        }else if(state == ""){
+            return el
+        }
+    })
+
+    console.log(taskItems);
 
 
     taskItems.forEach((el, index)=>{
@@ -57,4 +82,41 @@ let displayTodos = function(){
     })
 }
 
-displayTodos()
+
+    // filter todos
+
+    let all = document.querySelector('.all')
+    all.addEventListener("click", ()=>{
+        displayTodos("")
+    })
+
+    let active = document.querySelector('.active')
+    active.addEventListener("click", ()=>{
+        displayTodos(false)
+    })
+
+    let complete = document.querySelector('.completed')
+    complete.addEventListener("click", ()=>{
+        displayTodos(true)
+    })
+
+    // clear completed
+    let clearCompleted = document.querySelector(".clear")
+    clearCompleted.addEventListener("click", ()=>{
+        let allTasks = localStorage.getItem("todos")
+
+        allTasks = JSON.parse(allTasks)
+        console.log(allTasks);
+        let uncompleted = allTasks.filter((el)=>{
+            return el.status === false
+        })
+        todos = todos.filter((el)=> el.status == false)
+        
+        localStorage.setItem('todos', JSON.stringify(uncompleted))
+
+        displayTodos("")
+
+    })
+
+
+displayTodos("")
