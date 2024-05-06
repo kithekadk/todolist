@@ -1,5 +1,3 @@
-// import { pickName } from "../test.js"
-
 let todosContainer = document.querySelector('.todos')
 
 let todos = []
