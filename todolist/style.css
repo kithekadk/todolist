@@ -46,6 +46,7 @@ input[type="checkbox"]{
     background-color: black;
     appearance: none;
     clip-path: circle(45% at 50% 50%);
+    margin-right: 10px;
 }
 
 .checkbox:checked{
@@ -72,10 +73,13 @@ input[type="checkbox"]{
     padding: 10px;
     color: rgb(169, 169, 169);
     border-bottom: 0.5px solid gray;
+    justify-content: space-between;
 }
 
-.todo > div{
-    margin-left: 15px;
+
+.todo-inputs{
+    display: flex;
+    align-items: center;
 }
 
 .filter{
@@ -98,6 +102,12 @@ a{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     
+}
+
+.deletebtn{
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 378px) {
